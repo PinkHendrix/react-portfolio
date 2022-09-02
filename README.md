@@ -1,6 +1,23 @@
 # Getting Started with Create React App
 
+Making a portfolio following Slobodan's Tutorial, thanks and cheers!
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+After creating your react app, switch into the directory and install your packages by using
+npm i 'package_name':
+
+- @emailjs/browser
+- @fortawesome/free-brands-svg-icons
+- @fortawesome/free-solid-svg-icons
+- @fortawesome/react-fontawesome
+- animate.css
+- gsap-trial
+- loaders.css
+- react-leaflet
+- react-loaders
+- react-router-dom
+- sass
 
 ## Available Scripts
 
