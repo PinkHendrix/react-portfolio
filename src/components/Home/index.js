@@ -9,7 +9,7 @@ const Home = () => {
         <h1>
           Hi, <br /> I'm
           <img src={LogoTitle} alt="developer" />
-          lobodan
+          lobo
           <br />
           web developer
         </h1>
