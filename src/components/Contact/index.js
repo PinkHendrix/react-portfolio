@@ -1,16 +1,40 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Loader from 'react-loaders'
 import AnimatedLetters from '../AnimatedLetters'
 import './index.scss'
+import emailjs from '@emailjs/browser'
+import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
 
 const Contact = () => {
   const [letterClass, setLetterClass] = useState('text-animate')
+  const refForm = useRef()
 
   useEffect(() => {
     setTimeout(() => {
       setLetterClass('text-animate-hover')
     }, 3000)
   }, [])
+
+  const sendEmail = (e) => {
+    e.preventDefault()
+
+    emailjs
+      .sendForm(
+        'gmail',
+        'xxxxxxx', //get this after you create your account
+        refForm.current,
+        'tokenxxxxx' //get this after you create your account
+      )
+      .then(
+        () => {
+          alert('Message submitted!')
+          window.location.reload(false)
+        },
+        () => {
+          alert('Failed to send, please try again.')
+        }
+      )
+  }
 
   return (
     <>
@@ -28,7 +52,7 @@ const Contact = () => {
             free to contact me with any questions or with blessings!
           </p>
           <div className="contact-form">
-            <form>
+            <form ref={refForm} onSubmit={sendEmail}>
               <ul>
                 <li className="half">
                   <input type="text" name="name" placeholder="Name" required />
@@ -62,6 +86,23 @@ const Contact = () => {
               </ul>
             </form>
           </div>
+        </div>
+        <div className="info-map">
+          Rick Hausenstein,
+          <br />
+          US of A,
+          <br />
+          111 El Camino Real <br />
+          San Diego <br />
+          <span>ricktest@yahoo.com</span>
+        </div>
+        <div className="map-wrap">
+          <MapContainer center={[33.037, -117.292]} zoom={13}>
+            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+            <Marker position={[33.037, -117.292]}>
+              <Popup>Land of Milk & Honey</Popup>
+            </Marker>
+          </MapContainer>
         </div>
       </div>
       <Loader type="pacman" />
